@@ -233,7 +233,9 @@ button {
 .dict-panel,
 .json-export-panel,
 .goal-panel,
-.todo-panel {
+.todo-panel,
+.filter-panel,
+.idia-card {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -694,6 +696,75 @@ button {
   color: var(--green);
 }
 
+.filter-panel {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 18px;
+  padding: 16px;
+}
+
+.filter-panel h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.filter-chip {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--muted);
+  min-height: 34px;
+  padding: 0 10px;
+}
+
+.filter-chip.active {
+  border-color: rgba(243, 199, 79, 0.65);
+  color: var(--gold);
+}
+
+.idia-list {
+  display: grid;
+  gap: 10px;
+}
+
+.idia-card {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  padding: 14px;
+}
+
+.idia-card-main {
+  display: grid;
+  gap: 10px;
+}
+
+.idia-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.idia-card code {
+  background: #07101d;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: #dce4ee;
+  display: block;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  padding: 9px 10px;
+}
+
+.gate-actions {
+  align-content: start;
+  display: grid;
+  gap: 8px;
+  min-width: 118px;
+}
+
 @media (max-width: 1200px) {
   .app-shell {
     grid-template-columns: 220px minmax(0, 1fr);
@@ -744,6 +815,8 @@ button {
   .ticket-layout,
   .goal-grid,
   .todo-grid,
+  .filter-panel,
+  .idia-card,
   .data-row,
   .form-grid,
   .form-grid.two-col {

@@ -21,6 +21,9 @@ Updated: 2026-06-01
 - [x] ReportからKnowledgeへの昇格
 - [x] Git初期化とGitHub push
 - [x] 開発TODOをBrainNote上でも閲覧できるようにする
+- [x] IDIA Inbox画面
+- [x] IDIAのタグフィルター
+- [x] IDIAを開発に通すかゲート管理
 
 ## CURRENT
 

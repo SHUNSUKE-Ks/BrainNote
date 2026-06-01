@@ -142,6 +142,18 @@ export const devTodo = {
   ]
 };
 
+export const ideas = [
+  {
+    id: "idia_note_app_share_v05_001",
+    title: "NaccSystemを新たなノートアプリとして進化させる",
+    sourcePath: "C:\\Users\\enjoy\\InBox2026\\InBox0601\\note_app_share_v05\\note_app_share_v05",
+    body: "NaccSystemを新たなノートアプリとして作るとき、Noteの書き込みを合わせていく。",
+    tags: ["note_app", "NaccSystem", "writing_flow", "sample_app"],
+    gate: "review",
+    createdAt: "2026-06-01"
+  }
+];
+
 export const devTasks = [
   { lane: "Inbox", title: "Reportを集める", meta: "source: ReportBox" },
   { lane: "Inbox", title: "DevStudioを読む", meta: "source: AllDevStudio" },

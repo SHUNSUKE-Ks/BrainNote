@@ -23,6 +23,8 @@ npm run dev
 ## 現在できること
 
 - ReportBoxへReportを追加
+- IDIA Inboxで荒いアイディアをタグ管理
+- IDIAを開発に通すかゲート管理
 - ReportBoxからKnowledge Indexへ昇格
 - GoalsでKGI / KPI / DONEを管理
 - Dev TODOで開発状況を確認

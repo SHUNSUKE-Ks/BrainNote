@@ -1,6 +1,6 @@
 const STORAGE_KEY = "06_brain_workspace_data_v1";
 
-export function createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket, goals, devTodo }) {
+export function createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket, goals, devTodo, ideas }) {
   return {
     reports,
     knowledgeIndex,
@@ -8,6 +8,7 @@ export function createInitialWorkspace({ reports, knowledgeIndex, memories, func
     tickets: [functionTicket],
     goals,
     devTodo,
+    ideas,
     updatedAt: new Date().toISOString()
   };
 }
@@ -73,6 +74,9 @@ export function exportMarkdown(filename, data) {
       ...group.items.map((item) => `- [${item.done ? "x" : " "}] ${item.text}`),
       ""
     ])),
+    "## IDIA Inbox",
+    ...(data.ideas || []).map((item) => `- [${item.gate}] ${item.title}: ${(item.tags || []).join(", ")}`),
+    "",
     "## Function Tickets",
     ...data.tickets.map((item) => `- ${item.title}: ${item.request}`)
   ].join("\n");
@@ -118,6 +122,7 @@ function normalizeWorkspaceData(data, fallbackData) {
     memories: data.memories || fallbackData.memories,
     tickets: data.tickets || fallbackData.tickets,
     goals: data.goals || fallbackData.goals,
-    devTodo: data.devTodo || fallbackData.devTodo
+    devTodo: data.devTodo || fallbackData.devTodo,
+    ideas: data.ideas || fallbackData.ideas
   };
 }

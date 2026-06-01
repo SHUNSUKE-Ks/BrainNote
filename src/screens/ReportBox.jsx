@@ -1,6 +1,6 @@
 import DataList from "../components/DataList";
 import SectionHeader from "../components/SectionHeader";
-import { createSignal } from "solid-js";
+import { Show, createSignal } from "solid-js";
 import { listFromText, makeId } from "../utils/formats";
 
 export default function ReportBox(props) {
@@ -9,6 +9,11 @@ export default function ReportBox(props) {
   const [type, setType] = createSignal("md");
   const [tags, setTags] = createSignal("component, layout");
   const [body, setBody] = createSignal("");
+  const [promoteReport, setPromoteReport] = createSignal(null);
+  const [knowledgeTitle, setKnowledgeTitle] = createSignal("");
+  const [knowledgeCategory, setKnowledgeCategory] = createSignal("app_development");
+  const [knowledgeSummary, setKnowledgeSummary] = createSignal("");
+  const [knowledgeKeywords, setKnowledgeKeywords] = createSignal("");
 
   const addReport = (event) => {
     event.preventDefault();
@@ -29,6 +34,41 @@ export default function ReportBox(props) {
 
     setTitle("");
     setBody("");
+  };
+
+  const openPromotion = (report) => {
+    setPromoteReport(report);
+    setKnowledgeTitle(report.title);
+    setKnowledgeCategory(suggestCategory(report));
+    setKnowledgeSummary(makeSummaryDraft(report.body));
+    setKnowledgeKeywords([...new Set([...(report.tags || []), report.source, report.type])].filter(Boolean).join(", "));
+  };
+
+  const promoteToKnowledge = (event) => {
+    event.preventDefault();
+    const report = promoteReport();
+    if (!report) return;
+
+    const nextKnowledge = {
+      id: makeId("knowledge"),
+      title: knowledgeTitle().trim() || report.title,
+      category: knowledgeCategory().trim() || "uncategorized",
+      summary: knowledgeSummary().trim(),
+      sourceReports: [report.id],
+      searchKeywords: listFromText(knowledgeKeywords())
+    };
+
+    props.onDataChange({
+      ...props.rawData,
+      knowledgeIndex: [nextKnowledge, ...props.rawData.knowledgeIndex],
+      reports: props.rawData.reports.map((item) =>
+        item.id === report.id
+          ? { ...item, promotedToKnowledge: nextKnowledge.id, promotedAt: new Date().toISOString() }
+          : item
+      )
+    });
+
+    setPromoteReport(null);
   };
 
   return (
@@ -71,11 +111,68 @@ export default function ReportBox(props) {
         </div>
       </form>
 
+      <Show when={promoteReport()}>
+        <form class="promotion-panel" onSubmit={promoteToKnowledge}>
+          <div class="promotion-header">
+            <div>
+              <h2>Knowledgeへ昇格</h2>
+              <p>Reportの一時情報から、後で検索・再利用できる共通知識を作る。</p>
+            </div>
+            <button class="ghost-button" type="button" onClick={() => setPromoteReport(null)}>Cancel</button>
+          </div>
+          <div class="form-grid">
+            <label>
+              Knowledge Title
+              <input value={knowledgeTitle()} onInput={(event) => setKnowledgeTitle(event.currentTarget.value)} />
+            </label>
+            <label>
+              Category
+              <input value={knowledgeCategory()} onInput={(event) => setKnowledgeCategory(event.currentTarget.value)} />
+            </label>
+            <label class="wide-field">
+              Search Keywords
+              <input value={knowledgeKeywords()} onInput={(event) => setKnowledgeKeywords(event.currentTarget.value)} />
+            </label>
+          </div>
+          <label>
+            Summary
+            <textarea value={knowledgeSummary()} onInput={(event) => setKnowledgeSummary(event.currentTarget.value)} />
+          </label>
+          <div class="source-note">sourceReport: {promoteReport().id}</div>
+          <div class="form-actions">
+            <button class="primary-button" type="submit">Promote to Knowledge</button>
+          </div>
+        </form>
+      </Show>
+
       <DataList
         items={props.data.reports}
-        describe={(item) => `${item.source} / ${item.type} / ${item.createdAt} / ${item.body}`}
-        tags={(item) => item.tags}
+        describe={(item) =>
+          `${item.source} / ${item.type} / ${item.createdAt} / ${item.body}${
+            item.promotedToKnowledge ? ` / promoted: ${item.promotedToKnowledge}` : ""
+          }`
+        }
+        tags={(item) => item.promotedToKnowledge ? [...item.tags, "promoted"] : item.tags}
+        actions={(item) => (
+          <button class="ghost-button small-button" type="button" onClick={() => openPromotion(item)}>
+            Knowledgeへ昇格
+          </button>
+        )}
       />
     </>
   );
+}
+
+function makeSummaryDraft(body) {
+  const normalized = String(body || "").replace(/\s+/g, " ").trim();
+  if (!normalized) return "";
+  return normalized.length > 120 ? `${normalized.slice(0, 120)}...` : normalized;
+}
+
+function suggestCategory(report) {
+  const text = `${report.title} ${(report.tags || []).join(" ")} ${report.body}`.toLowerCase();
+  if (text.includes("ui") || text.includes("layout") || text.includes("component")) return "ui_design";
+  if (text.includes("asset") || text.includes("prompt")) return "asset_creation";
+  if (text.includes("tauri") || text.includes("solidjs") || text.includes("code")) return "app_development";
+  return "general";
 }

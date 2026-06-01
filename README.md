@@ -22,6 +22,7 @@ npm run dev
 ## 現在できること
 
 - ReportBoxへReportを追加
+- ReportBoxからKnowledge Indexへ昇格
 - GoalsでKGI / KPI / DONEを管理
 - Knowledge Indexへ共通知識を追加
 - Memory_0610へ短期記憶を追加

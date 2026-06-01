@@ -232,7 +232,8 @@ button {
 .ticket-card-large,
 .dict-panel,
 .json-export-panel,
-.goal-panel {
+.goal-panel,
+.todo-panel {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -646,6 +647,53 @@ button {
   color: var(--green);
 }
 
+.todo-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.todo-panel {
+  padding: 16px;
+}
+
+.todo-panel h2 {
+  font-size: 17px;
+  margin: 0 0 12px;
+}
+
+.todo-list {
+  display: grid;
+  gap: 8px;
+}
+
+.todo-row {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  display: grid;
+  gap: 5px;
+  min-height: 70px;
+  padding: 10px;
+  text-align: left;
+}
+
+.todo-row span {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.todo-row.done {
+  border-color: rgba(88, 214, 153, 0.65);
+}
+
+.todo-row.done span {
+  color: var(--green);
+}
+
 @media (max-width: 1200px) {
   .app-shell {
     grid-template-columns: 220px minmax(0, 1fr);
@@ -695,6 +743,7 @@ button {
   .task-board,
   .ticket-layout,
   .goal-grid,
+  .todo-grid,
   .data-row,
   .form-grid,
   .form-grid.two-col {

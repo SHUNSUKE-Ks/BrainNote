@@ -101,6 +101,47 @@ export const goals = {
   ]
 };
 
+export const devTodo = {
+  updatedAt: "2026-06-01",
+  groups: [
+    {
+      title: "DONE",
+      items: [
+        { id: "todo_html_mock", text: "HTMLモック作成", done: true },
+        { id: "todo_solid_pwa", text: "SolidJS + Vite PWA構成", done: true },
+        { id: "todo_brand", text: "BrainNote PWAロゴ作成", done: true },
+        { id: "todo_goals", text: "KGI / KPI / DONE管理", done: true },
+        { id: "todo_promote_knowledge", text: "ReportからKnowledgeへの昇格", done: true }
+      ]
+    },
+    {
+      title: "CURRENT",
+      items: [
+        { id: "todo_dev_todo_screen", text: "開発TODOをBrainNote上でも閲覧できるようにする", done: false },
+        { id: "todo_report_to_memory", text: "ReportからMemoryへ昇格", done: false },
+        { id: "todo_report_to_ticket", text: "ReportからFunction Ticketへ昇格", done: false }
+      ]
+    },
+    {
+      title: "NEXT DONE",
+      items: [
+        { id: "todo_editable_records", text: "Report / Knowledge / Memory / Ticketの既存行を編集・削除できる", done: false },
+        { id: "todo_all_devstudio", text: "AllDevStudio画面の初期モックを作る", done: false },
+        { id: "todo_component_bank", text: "Component Bank画面を作る", done: false }
+      ]
+    },
+    {
+      title: "BACKLOG",
+      items: [
+        { id: "todo_tauri", text: "Tauri Desktop本体設定", done: false },
+        { id: "todo_local_save", text: "TauriでJSON/MDをローカル保存", done: false },
+        { id: "todo_report_watch", text: "Reportフォルダ監視", done: false },
+        { id: "todo_deploy", text: "GitHub Pages / PWAデプロイ", done: false }
+      ]
+    }
+  ]
+};
+
 export const devTasks = [
   { lane: "Inbox", title: "Reportを集める", meta: "source: ReportBox" },
   { lane: "Inbox", title: "DevStudioを読む", meta: "source: AllDevStudio" },

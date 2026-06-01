@@ -6,20 +6,22 @@ import KnowledgeIndex from "./screens/KnowledgeIndex";
 import MemoryView from "./screens/MemoryView";
 import FunctionTicket from "./screens/FunctionTicket";
 import Goals from "./screens/Goals";
+import DevTodo from "./screens/DevTodo";
 import { createInitialWorkspace, loadWorkspaceData, saveWorkspaceData } from "./dataBridge";
-import { functionTicket, goals, knowledgeIndex, memories, reports } from "./data/sampleData";
+import { devTodo, functionTicket, goals, knowledgeIndex, memories, reports } from "./data/sampleData";
 
 const screens = {
   Dashboard,
   ReportBox,
   Goals,
+  "Dev TODO": DevTodo,
   "Knowledge Index": KnowledgeIndex,
   Memory_0610: MemoryView,
   "Function Ticket": FunctionTicket
 };
 
 export default function App() {
-  const fallbackData = createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket, goals });
+  const fallbackData = createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket, goals, devTodo });
   const [activeScreen, setActiveScreen] = createSignal("Dashboard");
   const [query, setQuery] = createSignal("");
   const [workspaceData, setWorkspaceData] = createSignal(fallbackData);

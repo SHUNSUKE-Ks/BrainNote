@@ -6,7 +6,7 @@ export const reports = [
     type: "md",
     tags: ["start_report", "note_app", "NACCSystem", "UPNOTE", "gallery", "database", "relation"],
     createdAt: "2026-06-01",
-    body: "NACC Systemを06_AppListへクローンし、化粧品用途ではない汎用ノートアプリとして再構成する。UPNOTE仕様ノートは既存ノートから分離し、state駆動でeditor/gallery/database/relation/sidePanelのユーザー状態を追える構成にする。"
+    body: "NACC Systemを06_AppListへクローンし、化粧品用途ではない汎用ノートアプリとして再構成する。初期準備としてプロジェクト名/PWA名を差し替え、NACC由来データを空にし、src/features/upnoteにUPNOTE専用state境界を追加。clone先local commit: b0cae2e。"
   },
   {
     id: "report_solidjs_error_20260601_002",

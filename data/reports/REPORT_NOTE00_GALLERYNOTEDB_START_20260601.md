@@ -8,7 +8,7 @@
 - Clone Source: git@github.com:SHUNSUKE-Ks/nacc_system.git
 - Target Path: C:/Users/enjoy/InBox2026/InBox0601/06_AppList/note00-gallerynotedb_vol1.1
 - Created At: 2026-06-01
-- Status: preparing
+- Status: prepared
 
 ## 目的
 
@@ -119,3 +119,16 @@ BrainNoteとは別物として、以下の方向で検討する。
 
 削除作業は、clone後に構造を確認してから行う。
 既存ノートやtag機能は参考実装として扱い、すぐに消さない。
+
+## 準備実行結果
+
+- Clone完了: C:/Users/enjoy/InBox2026/InBox0601/06_AppList/note00-gallerynotedb_vol1.1
+- SSH cloneはHost key verificationで停止したため、HTTPS cloneで取得した
+- 旧remoteは誤push防止のため `upstream-nacc` にrenameした
+- Project/PWA nameを `note00-gallerynotedb_vol1.1` 系へ変更した
+- NACC由来の商品・栄養素・ギャラリーサンプル・初期ブログデータを空にした
+- UPNOTE専用の分離領域 `src/features/upnote` を追加した
+- `DevStart_note00-gallerynotedb_vol1.1.md` をclone先に追加した
+- `npm install` 完了
+- `npm run build` 成功
+- clone先local commit: `b0cae2e Prepare note00 gallery note db`

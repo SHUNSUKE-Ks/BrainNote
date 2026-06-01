@@ -1,6 +1,6 @@
 const STORAGE_KEY = "06_brain_workspace_data_v1";
 
-export function createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket, goals, devTodo, ideas }) {
+export function createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket, goals, devTodo, ideas, workspaceBoard }) {
   return {
     reports,
     knowledgeIndex,
@@ -9,6 +9,7 @@ export function createInitialWorkspace({ reports, knowledgeIndex, memories, func
     goals,
     devTodo,
     ideas,
+    workspaceBoard,
     updatedAt: new Date().toISOString()
   };
 }
@@ -77,6 +78,9 @@ export function exportMarkdown(filename, data) {
     "## IDIA Inbox",
     ...(data.ideas || []).map((item) => `- [${item.gate}] ${item.title}: ${(item.tags || []).join(", ")}`),
     "",
+    "## Workspace Board",
+    ...(data.workspaceBoard || []).map((item) => `- [${item.lane}] ${item.title}: ${(item.tags || []).join(", ")}`),
+    "",
     "## Function Tickets",
     ...data.tickets.map((item) => `- ${item.title}: ${item.request}`)
   ].join("\n");
@@ -123,6 +127,7 @@ function normalizeWorkspaceData(data, fallbackData) {
     tickets: data.tickets || fallbackData.tickets,
     goals: data.goals || fallbackData.goals,
     devTodo: data.devTodo || fallbackData.devTodo,
-    ideas: data.ideas || fallbackData.ideas
+    ideas: data.ideas || fallbackData.ideas,
+    workspaceBoard: data.workspaceBoard || fallbackData.workspaceBoard
   };
 }

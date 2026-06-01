@@ -25,6 +25,8 @@ npm run dev
 - ReportBoxへReportを追加
 - IDIA Inboxで荒いアイディアをタグ管理
 - IDIAを開発に通すかゲート管理
+- Workspace Boardで資料・IDIA・Codex相談メモをカンバン管理
+- BrainNote自身のSelf Reportテンプレート
 - ReportBoxからKnowledge Indexへ昇格
 - GoalsでKGI / KPI / DONEを管理
 - Dev TODOで開発状況を確認

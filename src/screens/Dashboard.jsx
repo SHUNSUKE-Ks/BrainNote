@@ -1,7 +1,6 @@
 import DataList from "../components/DataList";
 import SectionHeader from "../components/SectionHeader";
 import StatCard from "../components/StatCard";
-import TaskBoard from "../components/TaskBoard";
 
 export default function Dashboard(props) {
   const data = () => props.data;
@@ -18,14 +17,17 @@ export default function Dashboard(props) {
         <StatCard title="ReportBox" badge="INPUT" tone="blue" count={data().reports.length}>
           他アプリ・Codex・制作ログから送られてくる報告の入口。
         </StatCard>
+        <StatCard title="IDIA Inbox" badge="IDEA" tone="gold" count={data().ideas.length}>
+          荒いアイディアを本番開発TODOと分けて受け、タグとゲートで整理する。
+        </StatCard>
+        <StatCard title="Workspace Board" badge="BOARD" tone="blue" count={data().workspaceBoard.length}>
+          Codex相談、資料、PWAメモ、Desktopまとめ作業をテキストで割り振る。
+        </StatCard>
         <StatCard title="Knowledge" badge="INDEX" tone="green" count={data().knowledgeIndex.length}>
           ゲーム制作・アプリ制作を混ぜず、目次で検索先を決める場所。
         </StatCard>
         <StatCard title="Memory_0610" badge="SHORT" tone="purple" count={data().memories.length}>
           10日単位の短期記憶。次の10日へ持ち越す内容を精査する。
-        </StatCard>
-        <StatCard title="Function Ticket" badge="CARD" tone="gold" count={data().tickets.length}>
-          コードなしでAIに機能を伝える要件カード。
         </StatCard>
       </section>
 
@@ -39,8 +41,12 @@ export default function Dashboard(props) {
       </section>
 
       <section class="content-band">
-        <h2 class="band-title">June Tasks</h2>
-        <TaskBoard />
+        <h2 class="band-title">Recent IDIA</h2>
+        <DataList
+          items={data().ideas.slice(0, 3)}
+          describe={(item) => `${item.gate} / ${item.body}`}
+          tags={(item) => item.tags}
+        />
       </section>
     </>
   );

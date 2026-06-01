@@ -696,6 +696,67 @@ button {
   color: var(--green);
 }
 
+.workspace-board {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(5, minmax(180px, 1fr));
+  overflow-x: auto;
+  padding-bottom: 8px;
+}
+
+.workspace-column {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 360px;
+  padding: 12px;
+}
+
+.workspace-column h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.workspace-card {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.workspace-card h3 {
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.workspace-card p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.workspace-card code {
+  background: #07101d;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: #dce4ee;
+  display: block;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+  padding: 8px;
+}
+
+.board-move-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .filter-panel {
   display: grid;
   gap: 16px;
@@ -817,6 +878,7 @@ button {
   .todo-grid,
   .filter-panel,
   .idia-card,
+  .workspace-board,
   .data-row,
   .form-grid,
   .form-grid.two-col {

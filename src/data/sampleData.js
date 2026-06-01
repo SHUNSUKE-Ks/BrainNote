@@ -1,5 +1,14 @@
 export const reports = [
   {
+    id: "report_brainnote_self_0610_001",
+    title: "BrainNoteアプリ開発Report",
+    source: "BrainNote",
+    type: "md",
+    tags: ["self_report", "workspace", "pwa"],
+    createdAt: "2026-06-01",
+    body: "BrainNote自身の開発完了時に、機能・画面・データ構造・DONEをReportBoxへ提出するための自己Report枠。"
+  },
+  {
     id: "report_0610_001",
     title: "Codex作業報告",
     source: "Codex",
@@ -154,11 +163,45 @@ export const ideas = [
   }
 ];
 
-export const devTasks = [
-  { lane: "Inbox", title: "Reportを集める", meta: "source: ReportBox" },
-  { lane: "Inbox", title: "DevStudioを読む", meta: "source: AllDevStudio" },
-  { lane: "Divide", title: "Componentに分解", meta: "target: reusable UI/code" },
-  { lane: "Divide", title: "機能Ticket化", meta: "target: requirement card" },
-  { lane: "Build", title: "SVG + JSON Layout", meta: "output: layout_ticket.json" },
-  { lane: "Export", title: "Codexへ渡す", meta: "format: MD + JSON" }
+export const workspaceBoard = [
+  {
+    lane: "Inbox",
+    title: "外でCodexに画像生成してほしいメモ",
+    kind: "idia",
+    tags: ["image_generation", "outside_codex", "android_memo"],
+    source: "PWA Android memo",
+    body: "外出中に思いついた画像生成依頼をIDIAとしてため、帰宅後にDesktop側でフォルダへまとめる。"
+  },
+  {
+    lane: "Inbox",
+    title: "雑多なアイディアを企画書・資料・スライドにする",
+    kind: "idia",
+    tags: ["planning", "slides", "documents"],
+    source: "PWA Android memo",
+    body: "荒いメモをReport/IDIAとして蓄積し、後でCodexに企画書やスライド化を相談する。"
+  },
+  {
+    lane: "Sort",
+    title: "NaccSystemノートアプリ化資料",
+    kind: "local_path",
+    tags: ["NaccSystem", "note_app", "sample_app"],
+    source: "C:\\Users\\enjoy\\InBox2026\\InBox0601\\note_app_share_v05\\note_app_share_v05",
+    body: "NaccSystemをノートアプリへ転用するときの資料として分類する。"
+  },
+  {
+    lane: "Codex相談",
+    title: "NACCアプリ分析Report作成",
+    kind: "report_request",
+    tags: ["report", "component_analysis", "layout"],
+    source: "C:\\05__claude_workspace\\05_app\\NACC_System\\nacc-app",
+    body: "化粧品用アプリを別ジャンルのノートアプリへ進化させるサンプルとして、機能・レイアウト・ComponentをReport化する。"
+  },
+  {
+    lane: "Folderまとめ",
+    title: "DesktopでCodex相談用フォルダにまとめる",
+    kind: "desktop_batch",
+    tags: ["tauri", "local_folder", "codex_context"],
+    source: "BrainNote Desktop",
+    body: "PWAでためたIDIA/Reportを、帰宅後にTauri DesktopでlocalフォルダへMD/JSONとしてまとめる。"
+  }
 ];

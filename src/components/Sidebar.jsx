@@ -3,7 +3,11 @@ import { For } from "solid-js";
 const groups = [
   {
     label: "00_WorkSpace",
-    items: ["Dashboard", "ReportBox", "IDIA Inbox", "Goals", "Dev TODO", "Knowledge Index", "Memory_0610"]
+    items: ["Dashboard", "ReportBox", "IDIA Inbox", "Workspace Board", "Goals", "Knowledge Index", "Memory_0610"]
+  },
+  {
+    label: "BrainNote Dev",
+    items: ["Dev TODO"]
   },
   {
     label: "01_AI_Studio",
@@ -16,7 +20,7 @@ const groups = [
 ];
 
 export default function Sidebar(props) {
-  const selectable = new Set(["Dashboard", "ReportBox", "IDIA Inbox", "Goals", "Dev TODO", "Knowledge Index", "Memory_0610", "Function Ticket"]);
+  const selectable = new Set(["Dashboard", "ReportBox", "IDIA Inbox", "Workspace Board", "Goals", "Dev TODO", "Knowledge Index", "Memory_0610", "Function Ticket"]);
 
   return (
     <aside class="sidebar">

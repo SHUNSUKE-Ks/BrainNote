@@ -24,11 +24,15 @@ Updated: 2026-06-01
 - [x] IDIA Inbox画面
 - [x] IDIAのタグフィルター
 - [x] IDIAを開発に通すかゲート管理
+- [x] DashboardからBrainNote開発Tasksを分離
+- [x] Workspace Board画面
+- [x] BrainNote Self Reportテンプレート
 
 ## CURRENT
 
 - [ ] ReportからMemoryへ昇格
 - [ ] ReportからFunction Ticketへ昇格
+- [ ] PWAメモをDesktop/Tauri側でlocalフォルダにまとめる設計
 
 ## NEXT DONE
 
@@ -45,6 +49,13 @@ Updated: 2026-06-01
 - [ ] DevStudio用README作成
 - [ ] BrainNoteからDevStudioパスを参照できる
 - [ ] AllDevStudio画面の初期モックを作る
+
+### DONE: PWA Memo to Local Folder
+
+- [ ] Android PWAでIDIA/Boardカードをためる
+- [ ] Desktop側でCodex相談用のMD/JSONへExportする
+- [ ] local pathを含むカードをフォルダ別にまとめる
+- [ ] 画像生成依頼、資料化依頼、スライド化依頼を種別で分ける
 
 ### DONE: Component Bank
 

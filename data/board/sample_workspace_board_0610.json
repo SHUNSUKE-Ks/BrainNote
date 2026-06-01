@@ -1,0 +1,18 @@
+[
+  {
+    "lane": "Inbox",
+    "title": "外でCodexに画像生成してほしいメモ",
+    "kind": "idia",
+    "tags": ["image_generation", "outside_codex", "android_memo"],
+    "source": "PWA Android memo",
+    "body": "外出中に思いついた画像生成依頼をIDIAとしてため、帰宅後にDesktop側でフォルダへまとめる。"
+  },
+  {
+    "lane": "Codex相談",
+    "title": "NACCアプリ分析Report作成",
+    "kind": "report_request",
+    "tags": ["report", "component_analysis", "layout"],
+    "source": "C:\\05__claude_workspace\\05_app\\NACC_System\\nacc-app",
+    "body": "化粧品用アプリを別ジャンルのノートアプリへ進化させるサンプルとして、機能・レイアウト・ComponentをReport化する。"
+  }
+]

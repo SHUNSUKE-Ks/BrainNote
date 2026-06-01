@@ -1,0 +1,17 @@
+{
+  "name": "BrainNote",
+  "short_name": "BrainNote",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#101827",
+  "theme_color": "#f3c74f",
+  "description": "Workspace notes for reports, memory, and AI knowledge.",
+  "icons": [
+    {
+      "src": "/icons/brainnote-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

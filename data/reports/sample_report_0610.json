@@ -1,0 +1,20 @@
+[
+  {
+    "id": "report_0610_001",
+    "title": "Codex作業報告",
+    "source": "Codex",
+    "type": "md",
+    "tags": ["component", "layout"],
+    "createdAt": "2026-06-01",
+    "body": "06_BrainのHTMLモックをSolidJS Componentへ分解する。"
+  },
+  {
+    "id": "report_0610_002",
+    "title": "Prompt Gallery Report",
+    "source": "PromptGallery",
+    "type": "json",
+    "tags": ["asset", "prompt"],
+    "createdAt": "2026-06-01",
+    "body": "素材制作プロンプトと生成結果を再利用可能な単位で整理する。"
+  }
+]

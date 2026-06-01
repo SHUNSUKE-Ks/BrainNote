@@ -1,0 +1,18 @@
+[
+  {
+    "id": "knowledge_app_dev_001",
+    "title": "SolidJS Component設計",
+    "category": "app_development",
+    "summary": "SolidJSでComponentを分ける考え方",
+    "sourceReports": ["report_0610_001"],
+    "searchKeywords": ["SolidJS", "Component", "UI"]
+  },
+  {
+    "id": "knowledge_ui_design_001",
+    "title": "Workspace分類設計",
+    "category": "ui_design",
+    "summary": "人間向けWorkspaceとAI向けStudioを分け、迷わず入力できる画面構成にする。",
+    "sourceReports": ["report_0610_001"],
+    "searchKeywords": ["Workspace", "AI Studio", "分類"]
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "id": "ticket_function_layout_0610",
+  "title": "Function Ticket",
+  "type": "requirement_card",
+  "image": "svg_layout_ticket_1280x720",
+  "dict": {
+    "ReportBox": "他アプリからの報告入口",
+    "Knowledge": "AIが共通知識化するIndex",
+    "Memory": "10日単位の短期記憶",
+    "ComponentBank": "再利用できるUI/コード置き場"
+  },
+  "request": "このTicketをもとにSolidJS Componentへ分解する",
+  "output": ["SolidJS Component", "JSON Schema", "MD仕様書"]
+}

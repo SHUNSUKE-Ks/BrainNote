@@ -1,0 +1,18 @@
+[
+  {
+    "id": "memory_0610_001",
+    "period": "0610",
+    "title": "Component再利用方針",
+    "keepNext": true,
+    "summary": "ReportをComponentに分けて再利用する",
+    "nextAction": "ComponentBankへ登録"
+  },
+  {
+    "id": "memory_0610_002",
+    "period": "0610",
+    "title": "Tauri保存はdataBridgeへ隔離",
+    "keepNext": true,
+    "summary": "PWAではlocalStorage、Tauriではファイル保存へ差し替える。",
+    "nextAction": "Desktop版でsaveJson/saveMarkdownを実装"
+  }
+]

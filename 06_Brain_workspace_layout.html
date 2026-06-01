@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>06_Brain Workspace Layout</title>
+  <style>
+    :root {
+      --bg: #101827;
+      --panel: #151f2f;
+      --panel-2: #1d293a;
+      --panel-3: #263347;
+      --text: #eef2f7;
+      --muted: #aab4c3;
+      --line: #35445a;
+      --gold: #f3c74f;
+      --blue: #6db8ff;
+      --green: #58d699;
+      --purple: #b6a1ff;
+      --red: #fb7b83;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .app {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr) 360px;
+      min-height: 100vh;
+    }
+
+    .sidebar,
+    .inspector {
+      background: var(--panel);
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .sidebar {
+      border-right: 1px solid var(--line);
+    }
+
+    .inspector {
+      border-left: 1px solid var(--line);
+    }
+
+    .main {
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    .nav-group {
+      margin-bottom: 22px;
+    }
+
+    .nav-label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .nav-item {
+      width: 100%;
+      min-height: 42px;
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: 8px;
+      color: var(--text);
+      display: block;
+      margin-bottom: 6px;
+      padding: 10px 12px;
+      text-align: left;
+    }
+
+    .nav-item.active,
+    .nav-item:hover {
+      background: var(--panel-2);
+      border-color: var(--line);
+    }
+
+    .nav-item.dim {
+      color: #758094;
+    }
+
+    .topbar {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .search {
+      flex: 1;
+      min-height: 44px;
+      min-width: 160px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 0 14px;
+    }
+
+    .primary-button,
+    .ghost-button {
+      min-height: 44px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      padding: 0 14px;
+      white-space: nowrap;
+    }
+
+    .primary-button {
+      background: var(--gold);
+      color: #161b24;
+    }
+
+    .ghost-button {
+      background: var(--panel);
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .section-header {
+      align-items: flex-start;
+      display: flex;
+      gap: 16px;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .section-header h1 {
+      font-size: 24px;
+      letter-spacing: 0;
+      line-height: 1.2;
+      margin: 0 0 6px;
+    }
+
+    .section-header p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .section-meta {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--muted);
+      padding: 8px 10px;
+      white-space: nowrap;
+    }
+
+    .stat-grid {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .stat-card,
+    .data-row,
+    .task-column,
+    .preview-box,
+    .ticket-card,
+    .dict-panel,
+    .json-panel-wrap {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    .stat-card {
+      min-height: 160px;
+      padding: 16px;
+    }
+
+    .card-header {
+      align-items: center;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .card-header h2,
+    .data-row h2,
+    .task-column h2,
+    .ticket-card h2,
+    .dict-panel h2,
+    .json-panel-wrap h2 {
+      font-size: 16px;
+      line-height: 1.3;
+      margin: 0;
+    }
+
+    .stat-card p,
+    .data-row p,
+    .task-ticket p,
+    .ticket-card p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .stat-number {
+      color: var(--white);
+      font-size: 34px;
+      font-weight: 800;
+      margin-top: 18px;
+    }
+
+    .badge,
+    .tag {
+      background: var(--panel-2);
+      border-radius: 8px;
+      color: var(--muted);
+      display: inline-flex;
+      font-size: 12px;
+      line-height: 1;
+      padding: 6px 8px;
+    }
+
+    .blue {
+      color: var(--blue);
+    }
+
+    .green {
+      color: var(--green);
+    }
+
+    .purple {
+      color: var(--purple);
+    }
+
+    .gold {
+      color: var(--gold);
+    }
+
+    .content-band {
+      margin-top: 26px;
+    }
+
+    .band-title {
+      font-size: 18px;
+      margin: 0 0 12px;
+    }
+
+    .data-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .data-row {
+      align-items: center;
+      display: grid;
+      gap: 14px;
+      grid-template-columns: minmax(0, 1fr) auto;
+      min-height: 92px;
+      padding: 14px;
+    }
+
+    .data-row h2 {
+      margin-bottom: 5px;
+    }
+
+    .tag-row {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .task-board {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .task-column {
+      min-height: 260px;
+      padding: 14px;
+    }
+
+    .task-column h2 {
+      margin-bottom: 12px;
+    }
+
+    .task-ticket {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      min-height: 76px;
+      padding: 12px;
+    }
+
+    .task-ticket h3 {
+      font-size: 14px;
+      margin: 0 0 6px;
+    }
+
+    .split-layout {
+      display: grid;
+      gap: 14px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.8fr);
+      margin-top: 26px;
+    }
+
+    .ticket-card,
+    .dict-panel,
+    .json-panel-wrap {
+      padding: 16px;
+    }
+
+    .ticket-visual {
+      align-items: center;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, #223049, #335047);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--gold);
+      display: flex;
+      font-weight: 800;
+      justify-content: center;
+      margin-bottom: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+
+    .ticket-card h2 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .dict-panel {
+      display: grid;
+      gap: 10px;
+    }
+
+    .dict-row {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      display: grid;
+      gap: 6px;
+      padding: 10px;
+    }
+
+    .dict-row span {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .json-panel-wrap {
+      grid-column: 1 / -1;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 210px;
+      background: #07101d;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: #dce4ee;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      padding: 12px;
+      resize: vertical;
+    }
+
+    .preview-box {
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+
+    .preview-title {
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .preview-text {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 1200px) {
+      .app {
+        grid-template-columns: 220px minmax(0, 1fr);
+      }
+
+      .inspector {
+        display: none;
+      }
+
+      .stat-grid,
+      .task-board {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 760px) {
+      .app {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .main {
+        padding: 14px;
+      }
+
+      .topbar,
+      .section-header {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .stat-grid,
+      .task-board,
+      .split-layout,
+      .data-row {
+        grid-template-columns: 1fr;
+      }
+
+      .primary-button,
+      .ghost-button {
+        width: 100%;
+      }
+
+      .section-meta {
+        width: fit-content;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand">06_Brain</div>
+      <div class="subtitle">June Workspace / AI Studio</div>
+
+      <div class="nav-group">
+        <div class="nav-label">00_WorkSpace</div>
+        <button class="nav-item active">Dashboard</button>
+        <button class="nav-item">ReportBox</button>
+        <button class="nav-item">Knowledge Index</button>
+        <button class="nav-item">Memory_0610</button>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-label">01_AI_Studio</div>
+        <button class="nav-item dim">AllDevStudio</button>
+        <button class="nav-item dim">Component Bank</button>
+        <button class="nav-item">Function Ticket</button>
+        <button class="nav-item dim">SVG + JSON Layout</button>
+      </div>
+
+      <div class="nav-group">
+        <div class="nav-label">Output</div>
+        <button class="nav-item">Export JSON</button>
+        <button class="nav-item">Export MD</button>
+        <button class="nav-item">Send to Codex</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <input class="search" placeholder="検索：Report / Component / Memory / Ticket" />
+        <button class="ghost-button">JSON</button>
+        <button class="ghost-button">MD</button>
+        <button class="primary-button">+ New Ticket</button>
+      </header>
+
+      <section class="section-header">
+        <div>
+          <h1>Workspace Overview</h1>
+          <p>Report、Knowledge、Memory、Ticketを月内の制作判断に使える形で見渡す。</p>
+        </div>
+        <span class="section-meta">PWA Mock v1</span>
+      </section>
+
+      <section class="stat-grid">
+        <article class="stat-card">
+          <div class="card-header">
+            <h2>ReportBox</h2>
+            <span class="badge blue">INPUT</span>
+          </div>
+          <p>他アプリ・Codex・制作ログから送られてくる報告の入口。</p>
+          <div class="stat-number">2</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="card-header">
+            <h2>Knowledge</h2>
+            <span class="badge green">INDEX</span>
+          </div>
+          <p>ゲーム制作・アプリ制作を混ぜず、目次で検索先を決める場所。</p>
+          <div class="stat-number">2</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="card-header">
+            <h2>Memory_0610</h2>
+            <span class="badge purple">SHORT</span>
+          </div>
+          <p>10日単位の短期記憶。次の10日へ持ち越す内容を精査する。</p>
+          <div class="stat-number">2</div>
+        </article>
+
+        <article class="stat-card">
+          <div class="card-header">
+            <h2>Function Ticket</h2>
+            <span class="badge gold">CARD</span>
+          </div>
+          <p>コードなしでAIに機能を伝える要件カード。</p>
+          <div class="stat-number">1</div>
+        </article>
+      </section>
+
+      <section class="content-band">
+        <h2 class="band-title">ReportBox</h2>
+        <div class="data-list">
+          <article class="data-row">
+            <div>
+              <h2>Codex作業報告</h2>
+              <p>Codex / md / 2026-06-01 / HTMLモックをSolidJS Componentへ分解する。</p>
+            </div>
+            <div class="tag-row">
+              <span class="tag">component</span>
+              <span class="tag">layout</span>
+            </div>
+          </article>
+          <article class="data-row">
+            <div>
+              <h2>Prompt Gallery Report</h2>
+              <p>PromptGallery / json / 2026-06-01 / 素材制作プロンプトと生成結果を整理する。</p>
+            </div>
+            <div class="tag-row">
+              <span class="tag">asset</span>
+              <span class="tag">prompt</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <h2 class="band-title">Knowledge Index</h2>
+        <div class="data-list">
+          <article class="data-row">
+            <div>
+              <h2>SolidJS Component設計</h2>
+              <p>app_development / SolidJSでComponentを分ける考え方。</p>
+            </div>
+            <div class="tag-row">
+              <span class="tag">SolidJS</span>
+              <span class="tag">Component</span>
+              <span class="tag">UI</span>
+            </div>
+          </article>
+          <article class="data-row">
+            <div>
+              <h2>Workspace分類設計</h2>
+              <p>ui_design / 人間向けWorkspaceとAI向けStudioを分ける。</p>
+            </div>
+            <div class="tag-row">
+              <span class="tag">Workspace</span>
+              <span class="tag">AI Studio</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <h2 class="band-title">Memory_0610</h2>
+        <div class="data-list">
+          <article class="data-row">
+            <div>
+              <h2>Component再利用方針</h2>
+              <p>ReportをComponentに分けて再利用する。next: ComponentBankへ登録。</p>
+            </div>
+            <div class="tag-row">
+              <span class="tag">0610</span>
+              <span class="tag">keepNext</span>
+            </div>
+          </article>
+          <article class="data-row">
+            <div>
+              <h2>Tauri保存はdataBridgeへ隔離</h2>
+              <p>PWAではlocalStorage、Tauriではファイル保存へ差し替える。</p>
+            </div>
+            <div class="tag-row">
+              <span class="tag">0610</span>
+              <span class="tag">keepNext</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band">
+        <h2 class="band-title">June Tasks</h2>
+        <div class="task-board">
+          <section class="task-column">
+            <h2>Inbox</h2>
+            <article class="task-ticket">
+              <h3>Reportを集める</h3>
+              <p>source: ReportBox</p>
+            </article>
+            <article class="task-ticket">
+              <h3>DevStudioを読む</h3>
+              <p>source: AllDevStudio</p>
+            </article>
+          </section>
+
+          <section class="task-column">
+            <h2>Divide</h2>
+            <article class="task-ticket">
+              <h3>Componentに分解</h3>
+              <p>target: reusable UI/code</p>
+            </article>
+            <article class="task-ticket">
+              <h3>機能Ticket化</h3>
+              <p>target: requirement card</p>
+            </article>
+          </section>
+
+          <section class="task-column">
+            <h2>Build</h2>
+            <article class="task-ticket">
+              <h3>SVG + JSON Layout</h3>
+              <p>output: layout_ticket.json</p>
+            </article>
+          </section>
+
+          <section class="task-column">
+            <h2>Export</h2>
+            <article class="task-ticket">
+              <h3>Codexへ渡す</h3>
+              <p>format: MD + JSON</p>
+            </article>
+          </section>
+        </div>
+      </section>
+
+      <section class="split-layout">
+        <article class="ticket-card">
+          <div class="ticket-visual">svg_layout_ticket_1280x720</div>
+          <h2>Function Ticket</h2>
+          <p>このTicketをもとにSolidJS Componentへ分解する。</p>
+          <div class="tag-row" style="margin-top: 12px;">
+            <span class="tag">SolidJS Component</span>
+            <span class="tag">JSON Schema</span>
+            <span class="tag">MD仕様書</span>
+          </div>
+        </article>
+
+        <article class="dict-panel">
+          <h2>Dict</h2>
+          <div class="dict-row">
+            <strong>ReportBox</strong>
+            <span>他アプリからの報告入口</span>
+          </div>
+          <div class="dict-row">
+            <strong>Knowledge</strong>
+            <span>AIが共通知識化するIndex</span>
+          </div>
+          <div class="dict-row">
+            <strong>Memory</strong>
+            <span>10日単位の短期記憶</span>
+          </div>
+          <div class="dict-row">
+            <strong>ComponentBank</strong>
+            <span>再利用できるUI/コード置き場</span>
+          </div>
+        </article>
+
+        <article class="json-panel-wrap">
+          <h2 style="margin-bottom: 12px;">Ticket JSON</h2>
+          <textarea readonly>{
+  "id": "ticket_function_layout_0610",
+  "title": "Function Ticket",
+  "type": "requirement_card",
+  "image": "svg_layout_ticket_1280x720",
+  "dict": {
+    "ReportBox": "他アプリからの報告入口",
+    "Knowledge": "AIが共通知識化するIndex",
+    "Memory": "10日単位の短期記憶",
+    "ComponentBank": "再利用できるUI/コード置き場"
+  },
+  "request": "このTicketをもとにSolidJS Componentへ分解する",
+  "output": ["SolidJS Component", "JSON Schema", "MD仕様書"]
+}</textarea>
+        </article>
+      </section>
+    </main>
+
+    <aside class="inspector">
+      <div class="brand">Ticket Inspector</div>
+      <div class="subtitle">AIに渡すための意味共有カード</div>
+
+      <div class="preview-box">
+        <div class="preview-title">選択中：Function Ticket</div>
+        <div class="preview-text">
+          1枚に Title / Image / Dict / Request / Output をまとめる。コードなしでもAIが機能を理解できる資料にする。
+        </div>
+      </div>
+
+      <textarea readonly>{
+  "file": "ticket_function_layout_0610.json",
+  "title": "Function Ticket",
+  "type": "requirement_card",
+  "image": "svg_layout_ticket_1280x720",
+  "dict": {
+    "ReportBox": "他アプリからの報告入口",
+    "Knowledge": "検索先を決める目次",
+    "Memory_0610": "10日単位の短期記憶",
+    "AllDevStudio": "各プロジェクト状況の集約",
+    "ComponentBank": "再利用できるUI/コード置き場"
+  },
+  "request": "このTicketをもとに、SolidJS用の画面Componentに分解してください。"
+}</textarea>
+    </aside>
+  </div>
+</body>
+</html>

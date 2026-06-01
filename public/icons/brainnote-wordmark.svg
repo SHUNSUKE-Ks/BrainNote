@@ -1,0 +1,12 @@
+<svg width="960" height="240" viewBox="0 0 960 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="240" rx="48" fill="#101827"/>
+  <rect x="48" y="44" width="152" height="152" rx="34" fill="#EEF2F7"/>
+  <path d="M89 94C89 78.536 101.536 66 117 66H122C128.627 66 134 71.373 134 78V138C134 144.627 128.627 150 122 150H117C101.536 150 89 137.464 89 122V94Z" stroke="#101827" stroke-width="16" stroke-linecap="round"/>
+  <path d="M159 94C159 78.536 146.464 66 131 66H126C119.373 66 114 71.373 114 78V138C114 144.627 119.373 150 126 150H131C146.464 150 159 137.464 159 122V94Z" stroke="#101827" stroke-width="16" stroke-linecap="round"/>
+  <path d="M100 108H148" stroke="#101827" stroke-width="16" stroke-linecap="round"/>
+  <path d="M93 173H155" stroke="#F3C74F" stroke-width="14" stroke-linecap="round"/>
+  <circle cx="84" cy="173" r="8" fill="#6DB8FF"/>
+  <circle cx="164" cy="173" r="8" fill="#58D699"/>
+  <text x="232" y="139" fill="#EEF2F7" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="76" font-weight="800">BrainNote</text>
+  <text x="236" y="177" fill="#AAB4C3" font-family="system-ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="24" font-weight="600">Workspace notes for reports, memory, and AI knowledge</text>
+</svg>

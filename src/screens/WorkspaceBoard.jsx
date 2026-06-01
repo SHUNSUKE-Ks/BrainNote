@@ -71,7 +71,7 @@ export default function WorkspaceBoard(props) {
         </div>
         <label>
           Source / Local Path
-          <input value={source()} onInput={(event) => setSource(event.currentTarget.value)} placeholder="C:\05__claude_workspace\..." />
+          <input value={source()} onInput={(event) => setSource(event.currentTarget.value)} placeholder="C:/05__claude_workspace/..." />
         </label>
         <label>
           Tags

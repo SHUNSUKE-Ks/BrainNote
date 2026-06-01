@@ -89,7 +89,7 @@ export default function IdiaInbox(props) {
         </div>
         <label>
           Source Path
-          <input value={sourcePath()} onInput={(event) => setSourcePath(event.currentTarget.value)} placeholder="C:\Users\enjoy\InBox2026\..." />
+          <input value={sourcePath()} onInput={(event) => setSourcePath(event.currentTarget.value)} placeholder="C:/Users/enjoy/InBox2026/..." />
         </label>
         <label>
           IDIA Memo

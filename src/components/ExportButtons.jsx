@@ -1,11 +1,12 @@
-import { exportJson, exportMarkdown, readImportedJson, saveWorkspaceData } from "../dataBridge";
+import { exportJson, exportMarkdown, normalizeWorkspaceData, readImportedJson, saveWorkspaceData } from "../dataBridge";
 
 export default function ExportButtons(props) {
   const importJson = async (event) => {
     const file = event.currentTarget.files?.[0];
     if (!file) return;
-    const nextData = await readImportedJson(file);
-    const saved = await saveWorkspaceData(nextData);
+    const rawImport = await readImportedJson(file);
+    const normalized = normalizeWorkspaceData(rawImport, props.fallbackData);
+    const saved = await saveWorkspaceData(normalized);
     props.onDataChange(saved);
     event.currentTarget.value = "";
   };

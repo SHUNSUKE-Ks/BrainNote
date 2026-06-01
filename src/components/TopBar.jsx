@@ -12,7 +12,7 @@ export default function TopBar(props) {
         placeholder="検索：Report / Component / Memory / Ticket"
         aria-label="Workspace search"
       />
-      <ExportButtons data={props.data} onDataChange={props.onDataChange} />
+      <ExportButtons data={props.data} fallbackData={props.fallbackData} onDataChange={props.onDataChange} />
       <button class="primary-button" type="button" onClick={addTicket}>
         + New Ticket
       </button>

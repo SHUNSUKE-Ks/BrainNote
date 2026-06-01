@@ -11,6 +11,7 @@ export default function AppShell(props) {
           query={props.query}
           setQuery={props.setQuery}
           data={props.data}
+          fallbackData={props.fallbackData}
           onDataChange={props.onDataChange}
           setActiveScreen={props.setActiveScreen}
         />

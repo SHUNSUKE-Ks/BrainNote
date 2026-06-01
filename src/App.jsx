@@ -1,4 +1,5 @@
 import { createMemo, createSignal, onMount } from "solid-js";
+import { Dynamic } from "solid-js/web";
 import AppShell from "./components/AppShell";
 import Dashboard from "./screens/Dashboard";
 import ReportBox from "./screens/ReportBox";
@@ -36,23 +37,25 @@ export default function App() {
 
   const filteredData = createMemo(() => {
     const term = query().trim().toLowerCase();
-    const data = workspaceData();
+    const data = workspaceData() || fallbackData;
     if (!term) return data;
 
     const includesTerm = (value) => JSON.stringify(value).toLowerCase().includes(term);
+    const safeArray = (key) => (Array.isArray(data[key]) ? data[key] : []);
+
     return {
       ...data,
-      reports: data.reports.filter(includesTerm),
+      reports: safeArray("reports").filter(includesTerm),
       goals: includesTerm(data.goals) ? data.goals : data.goals,
-      ideas: data.ideas.filter(includesTerm),
-      workspaceBoard: data.workspaceBoard.filter(includesTerm),
-      knowledgeIndex: data.knowledgeIndex.filter(includesTerm),
-      memories: data.memories.filter(includesTerm),
-      tickets: data.tickets.filter(includesTerm)
+      ideas: safeArray("ideas").filter(includesTerm),
+      workspaceBoard: safeArray("workspaceBoard").filter(includesTerm),
+      knowledgeIndex: safeArray("knowledgeIndex").filter(includesTerm),
+      memories: safeArray("memories").filter(includesTerm),
+      tickets: safeArray("tickets").filter(includesTerm)
     };
   });
 
-  const Screen = createMemo(() => screens[activeScreen()] || Dashboard);
+  const CurrentScreen = createMemo(() => screens[activeScreen()] || Dashboard);
 
   const updateWorkspace = async (nextData) => {
     const saved = await saveWorkspaceData(nextData);
@@ -66,9 +69,10 @@ export default function App() {
       query={query()}
       setQuery={setQuery}
       data={workspaceData()}
+      fallbackData={fallbackData}
       onDataChange={updateWorkspace}
     >
-      <Screen data={filteredData()} rawData={workspaceData()} onDataChange={updateWorkspace} />
+      <Dynamic component={CurrentScreen()} data={filteredData()} rawData={workspaceData()} onDataChange={updateWorkspace} />
     </AppShell>
   );
 }

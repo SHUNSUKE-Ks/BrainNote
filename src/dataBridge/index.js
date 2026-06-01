@@ -123,18 +123,19 @@ function isTauriRuntime() {
   return Boolean(window.__TAURI__ || window.__TAURI_INTERNALS__);
 }
 
-function normalizeWorkspaceData(data, fallbackData) {
+export function normalizeWorkspaceData(data, fallbackData) {
+  const source = data && typeof data === "object" && !Array.isArray(data) ? data : {};
+
   return {
-    ...fallbackData,
-    ...data,
-    reports: arrayOrFallback(data.reports, fallbackData.reports),
-    knowledgeIndex: arrayOrFallback(data.knowledgeIndex, fallbackData.knowledgeIndex),
-    memories: arrayOrFallback(data.memories, fallbackData.memories),
-    tickets: arrayOrFallback(data.tickets, fallbackData.tickets),
-    goals: data.goals || fallbackData.goals,
-    devTodo: data.devTodo || fallbackData.devTodo,
-    ideas: arrayOrFallback(data.ideas, fallbackData.ideas),
-    workspaceBoard: arrayOrFallback(data.workspaceBoard, fallbackData.workspaceBoard)
+    reports: arrayOrFallback(source.reports, fallbackData.reports),
+    knowledgeIndex: arrayOrFallback(source.knowledgeIndex, fallbackData.knowledgeIndex),
+    memories: arrayOrFallback(source.memories, fallbackData.memories),
+    tickets: arrayOrFallback(source.tickets, fallbackData.tickets),
+    goals: source.goals || fallbackData.goals,
+    devTodo: source.devTodo || fallbackData.devTodo,
+    ideas: arrayOrFallback(source.ideas, fallbackData.ideas),
+    workspaceBoard: arrayOrFallback(source.workspaceBoard, fallbackData.workspaceBoard),
+    updatedAt: source.updatedAt || fallbackData.updatedAt
   };
 }
 

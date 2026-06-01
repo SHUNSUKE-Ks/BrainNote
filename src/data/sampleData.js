@@ -1,5 +1,14 @@
 export const reports = [
   {
+    id: "report_solidjs_error_20260601_001",
+    title: "JSX placeholder内のWindowsパスでSolidJSが起動前に落ちる",
+    source: "BrainNote",
+    type: "md",
+    tags: ["SolidJS", "JSX", "Vite", "WindowsPath", "bug"],
+    createdAt: "2026-06-01",
+    body: "JSX内のplaceholderにWindowsパスをそのまま書いたことで、SolidJS UIが描画されず背景だけ表示された。placeholderをC:/形式へ変更して修正。"
+  },
+  {
     id: "report_brainnote_self_0610_001",
     title: "BrainNoteアプリ開発Report",
     source: "BrainNote",

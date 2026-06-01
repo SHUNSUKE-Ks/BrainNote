@@ -27,6 +27,8 @@ Updated: 2026-06-01
 - [x] DashboardからBrainNote開発Tasksを分離
 - [x] Workspace Board画面
 - [x] BrainNote Self Reportテンプレート
+- [x] SolidJS Error Reportフォルダー
+- [x] Windowsパスplaceholder不具合のReport作成
 
 ## CURRENT
 

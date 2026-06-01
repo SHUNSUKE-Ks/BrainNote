@@ -1,0 +1,12 @@
+[
+  {
+    "errorId": "ERR_SOLIDJS_20260601_001_windows_path_placeholder",
+    "title": "JSX placeholder内のWindowsパスでSolidJSが起動前に落ちる",
+    "project": "BrainNote",
+    "severity": "bug",
+    "status": "fixed",
+    "reportFile": "ERR_SOLIDJS_20260601_001_windows_path_placeholder.md",
+    "tags": ["SolidJS", "JSX", "Vite", "WindowsPath", "PWA"],
+    "createdAt": "2026-06-01"
+  }
+]

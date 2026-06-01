@@ -1,5 +1,14 @@
 export const reports = [
   {
+    id: "report_note00_gallerynotedb_start_20260601",
+    title: "note00-gallerynotedb_vol1.1 開発開始",
+    source: "Codex",
+    type: "md",
+    tags: ["start_report", "note_app", "NACCSystem", "UPNOTE", "gallery", "database", "relation"],
+    createdAt: "2026-06-01",
+    body: "NACC Systemを06_AppListへクローンし、化粧品用途ではない汎用ノートアプリとして再構成する。UPNOTE仕様ノートは既存ノートから分離し、state駆動でeditor/gallery/database/relation/sidePanelのユーザー状態を追える構成にする。"
+  },
+  {
     id: "report_solidjs_error_20260601_002",
     title: "BrainNoteが背景色だけ表示されSolidJS UIが描画されない",
     source: "BrainNote",

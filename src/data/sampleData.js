@@ -1,5 +1,14 @@
 export const reports = [
   {
+    id: "report_solidjs_error_20260601_002",
+    title: "BrainNoteが背景色だけ表示されSolidJS UIが描画されない",
+    source: "BrainNote",
+    type: "md",
+    tags: ["SolidJS", "PWA", "runtime_error", "blank_screen", "localStorage"],
+    createdAt: "2026-06-01",
+    body: "HTML/CSSは読み込まれるがSolidJS UIが描画されない。localStorage schema、Dashboardの配列前提アクセス、AppのfilteredDataを主な原因候補として調査中。"
+  },
+  {
     id: "report_solidjs_error_20260601_001",
     title: "JSX placeholder内のWindowsパスでSolidJSが起動前に落ちる",
     source: "BrainNote",

@@ -8,5 +8,15 @@
     "reportFile": "ERR_SOLIDJS_20260601_001_windows_path_placeholder.md",
     "tags": ["SolidJS", "JSX", "Vite", "WindowsPath", "PWA"],
     "createdAt": "2026-06-01"
+  },
+  {
+    "errorId": "ERR_SOLIDJS_20260601_002_blank_screen_runtime_investigation",
+    "title": "BrainNoteが背景色だけ表示され、SolidJS UIが描画されない",
+    "project": "BrainNote",
+    "severity": "bug",
+    "status": "investigating",
+    "reportFile": "ERR_SOLIDJS_20260601_002_blank_screen_runtime_investigation.md",
+    "tags": ["SolidJS", "PWA", "runtime_error", "blank_screen", "localStorage"],
+    "createdAt": "2026-06-01"
   }
 ]

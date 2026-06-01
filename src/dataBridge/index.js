@@ -29,6 +29,12 @@ export async function loadWorkspaceData(fallbackData) {
   }
 }
 
+export function resetWorkspaceData() {
+  if (!isTauriRuntime()) {
+    window.localStorage.removeItem(STORAGE_KEY);
+  }
+}
+
 export async function saveWorkspaceData(data) {
   const payload = { ...data, updatedAt: new Date().toISOString() };
 
@@ -121,13 +127,17 @@ function normalizeWorkspaceData(data, fallbackData) {
   return {
     ...fallbackData,
     ...data,
-    reports: data.reports || fallbackData.reports,
-    knowledgeIndex: data.knowledgeIndex || fallbackData.knowledgeIndex,
-    memories: data.memories || fallbackData.memories,
-    tickets: data.tickets || fallbackData.tickets,
+    reports: arrayOrFallback(data.reports, fallbackData.reports),
+    knowledgeIndex: arrayOrFallback(data.knowledgeIndex, fallbackData.knowledgeIndex),
+    memories: arrayOrFallback(data.memories, fallbackData.memories),
+    tickets: arrayOrFallback(data.tickets, fallbackData.tickets),
     goals: data.goals || fallbackData.goals,
     devTodo: data.devTodo || fallbackData.devTodo,
-    ideas: data.ideas || fallbackData.ideas,
-    workspaceBoard: data.workspaceBoard || fallbackData.workspaceBoard
+    ideas: arrayOrFallback(data.ideas, fallbackData.ideas),
+    workspaceBoard: arrayOrFallback(data.workspaceBoard, fallbackData.workspaceBoard)
   };
+}
+
+function arrayOrFallback(value, fallbackValue) {
+  return Array.isArray(value) ? value : fallbackValue;
 }

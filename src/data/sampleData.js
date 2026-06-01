@@ -72,6 +72,35 @@ export const functionTicket = {
   output: ["SolidJS Component", "JSON Schema", "MD仕様書"]
 };
 
+export const goals = {
+  kgi: "BrainNoteを、6月の制作・開発情報を迷わず集約し、次の制作判断に使えるWorkspaceにする。",
+  kpis: [
+    { id: "kpi_report_count", label: "Report登録数", target: "30件", current: "2件" },
+    { id: "kpi_knowledge_count", label: "Knowledge昇格数", target: "12件", current: "2件" },
+    { id: "kpi_memory_review", label: "Memory精査", target: "0610 / 0620 / 0630", current: "0610準備中" }
+  ],
+  doneDefinitions: [
+    {
+      id: "done_pwa_mock",
+      milestone: "PWA Mock",
+      outcome: "Dashboard、ReportBox、Knowledge、Memory、Ticketをブラウザで触れる",
+      releaseReady: true
+    },
+    {
+      id: "done_report_to_knowledge",
+      milestone: "Report to Knowledge",
+      outcome: "Reportを読み、共通知識としてKnowledge Indexへ昇格できる",
+      releaseReady: false
+    },
+    {
+      id: "done_tauri_save",
+      milestone: "Tauri Local Save",
+      outcome: "JSON/MDをローカルフォルダへ直接保存できる",
+      releaseReady: false
+    }
+  ]
+};
+
 export const devTasks = [
   { lane: "Inbox", title: "Reportを集める", meta: "source: ReportBox" },
   { lane: "Inbox", title: "DevStudioを読む", meta: "source: AllDevStudio" },

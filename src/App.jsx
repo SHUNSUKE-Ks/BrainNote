@@ -5,19 +5,21 @@ import ReportBox from "./screens/ReportBox";
 import KnowledgeIndex from "./screens/KnowledgeIndex";
 import MemoryView from "./screens/MemoryView";
 import FunctionTicket from "./screens/FunctionTicket";
+import Goals from "./screens/Goals";
 import { createInitialWorkspace, loadWorkspaceData, saveWorkspaceData } from "./dataBridge";
-import { functionTicket, knowledgeIndex, memories, reports } from "./data/sampleData";
+import { functionTicket, goals, knowledgeIndex, memories, reports } from "./data/sampleData";
 
 const screens = {
   Dashboard,
   ReportBox,
+  Goals,
   "Knowledge Index": KnowledgeIndex,
   Memory_0610: MemoryView,
   "Function Ticket": FunctionTicket
 };
 
 export default function App() {
-  const fallbackData = createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket });
+  const fallbackData = createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket, goals });
   const [activeScreen, setActiveScreen] = createSignal("Dashboard");
   const [query, setQuery] = createSignal("");
   const [workspaceData, setWorkspaceData] = createSignal(fallbackData);
@@ -35,6 +37,7 @@ export default function App() {
     return {
       ...data,
       reports: data.reports.filter(includesTerm),
+      goals: includesTerm(data.goals) ? data.goals : data.goals,
       knowledgeIndex: data.knowledgeIndex.filter(includesTerm),
       memories: data.memories.filter(includesTerm),
       tickets: data.tickets.filter(includesTerm)

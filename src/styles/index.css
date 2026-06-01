@@ -224,7 +224,8 @@ button {
 .preview-box,
 .ticket-card-large,
 .dict-panel,
-.json-export-panel {
+.json-export-panel,
+.goal-panel {
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -510,6 +511,93 @@ button {
   grid-column: 1 / -1;
 }
 
+.goal-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+}
+
+.goal-panel {
+  padding: 16px;
+}
+
+.goal-panel h2 {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+
+.goal-panel p {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.goal-kgi,
+.goal-done {
+  grid-column: 1 / -1;
+}
+
+.compact-form {
+  display: grid;
+  gap: 10px;
+}
+
+.compact-form input,
+.compact-form textarea {
+  background: #07101d;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  min-height: 42px;
+  padding: 10px 12px;
+}
+
+.compact-form textarea {
+  min-height: 100px;
+}
+
+.metric-list,
+.done-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.metric-row,
+.done-row {
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--text);
+  display: grid;
+  gap: 5px;
+  padding: 10px;
+  text-align: left;
+}
+
+.metric-row span,
+.done-row small {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.done-row span {
+  color: var(--gold);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.done-row.complete {
+  border-color: rgba(88, 214, 153, 0.65);
+}
+
+.done-row.complete span {
+  color: var(--green);
+}
+
 @media (max-width: 1200px) {
   .app-shell {
     grid-template-columns: 220px minmax(0, 1fr);
@@ -557,6 +645,7 @@ button {
   .stat-grid,
   .task-board,
   .ticket-layout,
+  .goal-grid,
   .data-row,
   .form-grid,
   .form-grid.two-col {

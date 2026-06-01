@@ -1,0 +1,31 @@
+{
+  "kgi": "BrainNoteを、6月の制作・開発情報を迷わず集約し、次の制作判断に使えるWorkspaceにする。",
+  "kpis": [
+    {
+      "id": "kpi_report_count",
+      "label": "Report登録数",
+      "target": "30件",
+      "current": "2件"
+    },
+    {
+      "id": "kpi_knowledge_count",
+      "label": "Knowledge昇格数",
+      "target": "12件",
+      "current": "2件"
+    }
+  ],
+  "doneDefinitions": [
+    {
+      "id": "done_pwa_mock",
+      "milestone": "PWA Mock",
+      "outcome": "Dashboard、ReportBox、Knowledge、Memory、Ticketをブラウザで触れる",
+      "releaseReady": true
+    },
+    {
+      "id": "done_report_to_knowledge",
+      "milestone": "Report to Knowledge",
+      "outcome": "Reportを読み、共通知識としてKnowledge Indexへ昇格できる",
+      "releaseReady": false
+    }
+  ]
+}

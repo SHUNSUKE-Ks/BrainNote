@@ -1,11 +1,12 @@
 const STORAGE_KEY = "06_brain_workspace_data_v1";
 
-export function createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket }) {
+export function createInitialWorkspace({ reports, knowledgeIndex, memories, functionTicket, goals }) {
   return {
     reports,
     knowledgeIndex,
     memories,
     tickets: [functionTicket],
+    goals,
     updatedAt: new Date().toISOString()
   };
 }
@@ -19,7 +20,7 @@ export async function loadWorkspaceData(fallbackData) {
   if (!stored) return fallbackData;
 
   try {
-    return JSON.parse(stored);
+    return normalizeWorkspaceData(JSON.parse(stored), fallbackData);
   } catch {
     return fallbackData;
   }
@@ -56,6 +57,15 @@ export function exportMarkdown(filename, data) {
     "## Memory_0610",
     ...data.memories.map((item) => `- ${item.title}: ${item.nextAction}`),
     "",
+    "## Goals",
+    `KGI: ${data.goals?.kgi || ""}`,
+    "",
+    "### KPI",
+    ...(data.goals?.kpis || []).map((item) => `- ${item.label}: ${item.current} / ${item.target}`),
+    "",
+    "### DONE",
+    ...(data.goals?.doneDefinitions || []).map((item) => `- ${item.milestone}: ${item.outcome}`),
+    "",
     "## Function Tickets",
     ...data.tickets.map((item) => `- ${item.title}: ${item.request}`)
   ].join("\n");
@@ -90,4 +100,16 @@ function downloadFile(filename, content, type) {
 
 function isTauriRuntime() {
   return Boolean(window.__TAURI__ || window.__TAURI_INTERNALS__);
+}
+
+function normalizeWorkspaceData(data, fallbackData) {
+  return {
+    ...fallbackData,
+    ...data,
+    reports: data.reports || fallbackData.reports,
+    knowledgeIndex: data.knowledgeIndex || fallbackData.knowledgeIndex,
+    memories: data.memories || fallbackData.memories,
+    tickets: data.tickets || fallbackData.tickets,
+    goals: data.goals || fallbackData.goals
+  };
 }
